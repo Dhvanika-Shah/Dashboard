@@ -7,7 +7,7 @@ df = pd.read_excel("online offline sales.xlsx")
 
 # Calculate Profit
 df["Profit"] = df["Total Selling Value"] - df["Total Buying Value"]
-
+st.button("Mybot")
 # Profit by Sales Type
 df_saletype = df.groupby("SALE TYPE")["Profit"].sum()
 top_sale_type = df_saletype.idxmax()
@@ -43,3 +43,4 @@ with col2:
 
     with tab_pay_chart:
         st.bar_chart(df_payment)
+
