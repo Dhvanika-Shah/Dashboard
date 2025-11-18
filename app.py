@@ -2,6 +2,12 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
+st.title("My Chatbot")
+
+st.components.v1.iframe(
+    "https://www.chatbase.co/Mge9vJCIojYk1OZv5HHmk/help",
+    height=600
+)
 # Load Excel file
 df = pd.read_excel("online offline sales.xlsx")
 
@@ -43,4 +49,5 @@ with col2:
 
     with tab_pay_chart:
         st.bar_chart(df_payment)
+
 
