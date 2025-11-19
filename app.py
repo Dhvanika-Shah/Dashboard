@@ -4,10 +4,10 @@ import streamlit as st
 
 st.title("My Chatbot")
 
-#st.components.v1.iframe(
-#    "https://www.chatbase.co/Mge9vJCIojYk1OZv5HHmk/help",
- #   height=600
-#)
+st.components.v1.iframe(
+   "https://www.chatbase.co/Mge9vJCIojYk1OZv5HHmk/help",
+   height=600
+)
 
 
 
@@ -90,6 +90,7 @@ with col2:
 
     with tab_pay_chart:
         st.bar_chart(df_payment)
+
 
 
 
