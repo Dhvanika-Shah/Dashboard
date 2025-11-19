@@ -10,14 +10,44 @@ st.title("My Chatbot")
 #)
 
 
+
+
 chat_widget = """
-<div id="chatbase-bubble"></div>
+<!-- FIXED CHATBASE WIDGET SCRIPT -->
 <script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="Mge9vJCIojYk1OZv5HHmk";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+window.chatbaseConfig = {
+    chatbotId: "Mge9vJCIojYk1OZv5HHmk"
+};
+
+(function(){
+    if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+        window.chatbase = (...arguments)=>{
+            if(!window.chatbase.q){ window.chatbase.q = [] }
+            window.chatbase.q.push(arguments)
+        };
+        window.chatbase = new Proxy(window.chatbase, {
+            get(target, prop){
+                if(prop === "q"){ return target.q }
+                return (...args) => target(prop, ...args)
+            }
+        });
+    }
+
+    const onLoad = function(){
+        const script = document.createElement("script");
+        script.src = "https://www.chatbase.co/embed.min.js";
+        script.id = "chatbase-script";
+        document.body.appendChild(script);
+    };
+
+    if(document.readyState === "complete"){ onLoad(); }
+    else { window.addEventListener("load", onLoad); }
+})();
 </script>
 """
 
-st.components.v1.html(chat_widget, height=0)
+st.components.v1.html(chat_widget, height=0, scrolling=False)
+
 
 # Load Excel file
 df = pd.read_excel("online offline sales.xlsx")
@@ -60,6 +90,7 @@ with col2:
 
     with tab_pay_chart:
         st.bar_chart(df_payment)
+
 
 
 
