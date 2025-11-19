@@ -12,41 +12,9 @@ st.components.v1.iframe(
 
 
 
-chat_widget = """
-<!-- FIXED CHATBASE WIDGET SCRIPT -->
-<script>
-window.chatbaseConfig = {
-    chatbotId: "Mge9vJCIojYk1OZv5HHmk"
-};
 
-(function(){
-    if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-        window.chatbase = (...arguments)=>{
-            if(!window.chatbase.q){ window.chatbase.q = [] }
-            window.chatbase.q.push(arguments)
-        };
-        window.chatbase = new Proxy(window.chatbase, {
-            get(target, prop){
-                if(prop === "q"){ return target.q }
-                return (...args) => target(prop, ...args)
-            }
-        });
-    }
 
-    const onLoad = function(){
-        const script = document.createElement("script");
-        script.src = "https://www.chatbase.co/embed.min.js";
-        script.id = "chatbase-script";
-        document.body.appendChild(script);
-    };
 
-    if(document.readyState === "complete"){ onLoad(); }
-    else { window.addEventListener("load", onLoad); }
-})();
-</script>
-"""
-
-st.components.v1.html(chat_widget, height=0, scrolling=False)
 
 
 # Load Excel file
@@ -90,6 +58,7 @@ with col2:
 
     with tab_pay_chart:
         st.bar_chart(df_payment)
+
 
 
 
